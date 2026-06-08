@@ -167,7 +167,7 @@ const WeddingInvitation = () => {
       >
         {/* Card outer */}
         <div
-          className="rounded-xl overflow-hidden relative"
+          className="rounded-xl overflow-hidden relative flex flex-col max-h-[90vh]"
           style={{
             background: 'rgba(15, 23, 42, 0.75)',
             backdropFilter: 'blur(16px)',
@@ -180,10 +180,10 @@ const WeddingInvitation = () => {
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-amber-500/10 blur-[50px] rounded-full pointer-events-none" />
           
           {/* Gold band top */}
-          <GoldBand />
+          <GoldBand className="shrink-0" />
 
           {/* Inner Content */}
-          <div className="p-6 relative">
+          <div className="p-6 relative overflow-y-auto overflow-x-hidden">
             <Corner pos="top-2 left-2" />
             <Corner pos="top-2 right-2" flip="x" />
             <Corner pos="bottom-2 left-2" flip="y" />
@@ -288,7 +288,7 @@ const WeddingInvitation = () => {
           </div>
 
           {/* Gold band bottom */}
-          <GoldBand />
+          <GoldBand className="shrink-0" />
         </div>
       </div>
     </div>
@@ -297,8 +297,8 @@ const WeddingInvitation = () => {
 
 /* ── Sub-components ── */
 
-const GoldBand = () => (
-  <div style={{ height: 4, background: 'linear-gradient(to right, transparent, #d4af37, #fef08a, #d4af37, transparent)' }} />
+const GoldBand = ({ className = "" }: { className?: string }) => (
+  <div className={className} style={{ height: 4, minHeight: 4, background: 'linear-gradient(to right, transparent, #d4af37, #fef08a, #d4af37, transparent)' }} />
 )
 
 const GoldLine = ({ style }: { style?: React.CSSProperties }) => (

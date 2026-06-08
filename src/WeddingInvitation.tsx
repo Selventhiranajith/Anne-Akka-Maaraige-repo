@@ -40,7 +40,7 @@ const WeddingInvitation = () => {
 
   return (
     <div
-      className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden"
+      className="min-h-screen flex items-center justify-center sm:p-4 relative overflow-hidden"
       style={{
         background: 'radial-gradient(circle at 50% 50%, #1e293b 0%, #0f172a 60%, #020617 100%)',
       }}
@@ -161,13 +161,13 @@ const WeddingInvitation = () => {
 
       {/* ── FULL CARD ── */}
       <div
-        className={`relative z-10 w-full max-w-md transition-all duration-1000 ease-out ${
+        className={`relative z-10 w-full max-w-lg h-[100dvh] sm:h-[95vh] transition-all duration-1000 ease-out ${
           showCard ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-32 scale-50 pointer-events-none'
         }`}
       >
         {/* Card outer */}
         <div
-          className="rounded-xl overflow-hidden relative flex flex-col max-h-[90vh]"
+          className="sm:rounded-xl overflow-hidden relative flex flex-col h-full w-full"
           style={{
             background: 'rgba(15, 23, 42, 0.75)',
             backdropFilter: 'blur(16px)',

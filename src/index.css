@@ -10,45 +10,50 @@
 
 body {
   min-height: 100vh;
-  background: #0a0500;
+  background: #020617; /* Slate 950 */
+  color: #f8fafc;
+  font-family: 'Inter', sans-serif;
 }
 
 @keyframes twinkle {
-  0%, 100% { opacity: 0.1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(1.4); }
+  0%, 100% { opacity: 0; transform: scale(0.8); }
+  50% { opacity: 0.6; transform: scale(1.5); }
 }
 
 @keyframes floatUp {
-  0% { opacity: 0; transform: translateY(30px) scale(0.96); }
+  0% { opacity: 0; transform: translateY(40px) scale(0.95); }
   100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 @keyframes envelopeFloat {
   0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
+  50% { transform: translateY(-12px); }
 }
 
 @keyframes liftOff {
   0% { transform: translateY(0) scale(1); opacity: 1; }
-  100% { transform: translateY(-50px) scale(0.94) rotateX(10deg); opacity: 0; }
+  30% { transform: translateY(15px) scale(1.05); opacity: 1; }
+  100% { transform: translateY(-100px) scale(0.85) rotateX(20deg); opacity: 0; }
 }
 
 .particle {
   position: absolute;
   border-radius: 50%;
-  background: #d4a017;
+  background: #d4af37;
+  box-shadow: 0 0 10px #d4af37, 0 0 20px #fef08a;
   animation: twinkle var(--duration, 3s) ease-in-out infinite;
   animation-delay: var(--delay, 0s);
+  opacity: 0;
 }
 
 .envelope-float {
-  animation: envelopeFloat 3.2s ease-in-out infinite;
+  animation: envelopeFloat 5s ease-in-out infinite;
 }
 
 .envelope-lifting {
-  animation: liftOff 0.7s ease-in forwards !important;
+  animation: liftOff 0.9s cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
 }
 
 .card-appear {
-  animation: floatUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: floatUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }

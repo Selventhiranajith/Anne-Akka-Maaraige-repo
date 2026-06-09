@@ -42,7 +42,7 @@ const WeddingInvitation = () => {
     <div
       className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden"
       style={{
-        background: 'radial-gradient(circle at 50% 50%, #1e293b 0%, #0f172a 60%, #020617 100%)',
+        background: 'radial-gradient(circle at 50% 50%, #fdf2f8 0%, #fce7f3 60%, #fbcfe8 100%)',
       }}
     >
       {/* Ambient particles */}
@@ -73,12 +73,12 @@ const WeddingInvitation = () => {
             {/* Envelope Back (Inside Pocket) */}
             <div 
               className="absolute inset-0 rounded-lg shadow-2xl"
-              style={{ background: '#090f1a', border: '1px solid rgba(212,175,55,0.2)' }}
+              style={{ background: '#fdf2f8', border: '1px solid rgba(212,175,55,0.2)' }}
             />
 
             {/* The Letter inside sliding up */}
             <div 
-              className={`absolute left-3 right-3 bottom-2 rounded bg-slate-800 border border-[#d4af37]/30 transition-all duration-700 ease-in-out z-10 flex flex-col items-center justify-start p-4 overflow-hidden`}
+              className={`absolute left-3 right-3 bottom-2 rounded bg-pink-50 border border-[#d4af37]/30 transition-all duration-700 ease-in-out z-10 flex flex-col items-center justify-start p-4 overflow-hidden`}
               style={{ 
                 height: '210px',
                 transform: opening ? 'translateY(-140px)' : 'translateY(0)',
@@ -96,7 +96,7 @@ const WeddingInvitation = () => {
             <div 
               className="absolute inset-0 z-20 pointer-events-none rounded-lg"
               style={{ 
-                background: 'linear-gradient(135deg, #162032 0%, #0f172a 100%)',
+                background: 'linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%)',
                 clipPath: 'polygon(0 0, 0 100%, 100% 100%, 100% 0, 50% 65%)',
                 boxShadow: 'inset 0 0 15px rgba(0,0,0,0.5)'
               }}
@@ -111,7 +111,7 @@ const WeddingInvitation = () => {
             <div 
               className={`absolute top-0 left-0 w-full h-[140px] origin-top transition-transform duration-700 ease-in-out z-30`}
               style={{ 
-                background: 'linear-gradient(to bottom, #1e293b, #0f172a)',
+                background: 'linear-gradient(to bottom, #fdf2f8, #fce7f3)',
                 clipPath: 'polygon(0 0, 100% 0, 50% 100%)',
                 transform: opening ? 'rotateX(180deg)' : 'rotateX(0deg)',
                 transformStyle: 'preserve-3d',
@@ -142,7 +142,7 @@ const WeddingInvitation = () => {
             <div 
               className={`absolute top-0 left-0 w-full h-[140px] origin-top transition-transform duration-700 ease-in-out z-0`}
               style={{ 
-                background: '#090f1a',
+                background: '#fdf2f8',
                 clipPath: 'polygon(0 0, 100% 0, 50% 100%)',
                 transform: opening ? 'rotateX(0deg)' : 'rotateX(-180deg)',
                 backfaceVisibility: 'hidden',
@@ -169,11 +169,11 @@ const WeddingInvitation = () => {
         <div
           className="rounded-xl overflow-hidden relative flex flex-col max-h-[90vh]"
           style={{
-            background: 'rgba(15, 23, 42, 0.75)',
+            background: 'rgba(255, 240, 245, 0.85)',
             backdropFilter: 'blur(16px)',
             WebkitBackdropFilter: 'blur(16px)',
-            border: '1px solid rgba(212, 175, 55, 0.3)',
-            boxShadow: '0 30px 60px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.1)',
+            border: '1px solid rgba(212, 175, 55, 0.5)',
+            boxShadow: '0 30px 60px rgba(0,0,0,0.15), inset 0 1px 1px rgba(255,255,255,0.6)',
           }}
         >
           {/* Elegant Glow Effects */}
@@ -201,7 +201,7 @@ const WeddingInvitation = () => {
               </p>
               <h1
                 className="mt-1 font-bold tracking-wide"
-                style={{ fontFamily: "'Noto Serif Tamil', serif", color: '#f8fafc', fontSize: 26, textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}
+                style={{ fontFamily: "'Noto Serif Tamil', serif", color: '#831843', fontSize: 26, textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}
               >
                 திருமண அழைப்பிதழ்
               </h1>
@@ -230,10 +230,10 @@ const WeddingInvitation = () => {
 
             {/* Church */}
             <SectionCard icon={<Church size={20} className="text-[#d4af37]" />} label="திருமண கோயில்">
-              <p style={{ fontFamily: "'Noto Serif Tamil', serif", color: '#f8fafc', fontWeight: 500, fontSize: 15, letterSpacing: '0.02em' }}>
+              <p style={{ fontFamily: "'Noto Serif Tamil', serif", color: '#831843', fontWeight: 500, fontSize: 15, letterSpacing: '0.02em' }}>
                 புனித அந்தோனியார் தேவாலயம்
               </p>
-              <p style={{ fontFamily: "'Noto Serif Tamil', serif", color: '#cbd5e1', fontSize: 13, marginTop: 4 }}>
+              <p style={{ fontFamily: "'Noto Serif Tamil', serif", color: '#9d174d', fontSize: 13, marginTop: 4 }}>
                 கல்மடு நாவல் நகர்
               </p>
             </SectionCard>
@@ -241,19 +241,19 @@ const WeddingInvitation = () => {
             {/* Date & Time */}
             <div className="grid grid-cols-2 gap-3 mb-3">
               <SectionCard icon={<CalendarDays size={20} className="text-[#d4af37]" />} label="திகதி" center>
-                <p style={{ fontFamily: "'Noto Serif Tamil', serif", color: '#f8fafc', fontWeight: 500, fontSize: 14 }}>24 / 06 / 2026</p>
-                <p style={{ fontFamily: "'Noto Serif Tamil', serif", color: '#cbd5e1', fontSize: 12, marginTop: 2 }}>புதன்கிழமை</p>
+                <p style={{ fontFamily: "'Noto Serif Tamil', serif", color: '#831843', fontWeight: 500, fontSize: 14 }}>24 / 06 / 2026</p>
+                <p style={{ fontFamily: "'Noto Serif Tamil', serif", color: '#9d174d', fontSize: 12, marginTop: 2 }}>புதன்கிழமை</p>
               </SectionCard>
               <SectionCard icon={<Clock size={20} className="text-[#d4af37]" />} label="நேரம்" center>
-                <p style={{ fontFamily: "'Noto Serif Tamil', serif", color: '#f8fafc', fontWeight: 500, fontSize: 14 }}>காலை 9:00</p>
-                <p style={{ fontFamily: "'Noto Serif Tamil', serif", color: '#cbd5e1', fontSize: 12, marginTop: 2 }}>மணி</p>
+                <p style={{ fontFamily: "'Noto Serif Tamil', serif", color: '#831843', fontWeight: 500, fontSize: 14 }}>காலை 9:00</p>
+                <p style={{ fontFamily: "'Noto Serif Tamil', serif", color: '#9d174d', fontSize: 12, marginTop: 2 }}>மணி</p>
               </SectionCard>
             </div>
 
             {/* Hall */}
             <SectionCard icon={<MapPin size={20} className="text-[#d4af37]" />} label="மண்டபம்">
-              <p style={{ fontFamily: "'Noto Serif Tamil', serif", color: '#f8fafc', fontWeight: 500, fontSize: 15, letterSpacing: '0.02em' }}>Mango Mansion</p>
-              <p style={{ fontFamily: "'Noto Serif Tamil', serif", color: '#cbd5e1', fontSize: 13, marginTop: 4, lineHeight: 1.5 }}>
+              <p style={{ fontFamily: "'Noto Serif Tamil', serif", color: '#831843', fontWeight: 500, fontSize: 15, letterSpacing: '0.02em' }}>Mango Mansion</p>
+              <p style={{ fontFamily: "'Noto Serif Tamil', serif", color: '#9d174d', fontSize: 13, marginTop: 4, lineHeight: 1.5 }}>
                 Asaippilai Eaththam, Murusuvil,<br />A9 Road, Jaffna
               </p>
             </SectionCard>
@@ -264,8 +264,8 @@ const WeddingInvitation = () => {
             <div
               className="grid grid-cols-2 gap-4 text-center rounded-lg p-4 relative overflow-hidden"
               style={{ 
-                background: 'linear-gradient(180deg, rgba(30, 41, 59, 0.5), rgba(15, 23, 42, 0.5))',
-                border: '1px solid rgba(212, 175, 55, 0.15)' 
+                background: 'linear-gradient(180deg, rgba(252, 231, 243, 0.5), rgba(251, 207, 232, 0.5))',
+                border: '1px solid rgba(212, 175, 55, 0.3)' 
               }}
             >
               <ContactPerson name="அனிஸ்ராஜ் கிருத்தி" phone="076 448 7749" />
@@ -281,7 +281,7 @@ const WeddingInvitation = () => {
               >
                 உங்கள் இனிய வருகை எங்களுக்கு மகிழ்ச்சியாகும்
               </p>
-              <p className="text-[9px] tracking-[0.4em] uppercase" style={{ color: '#94a3b8', fontFamily: "'Playfair Display', serif" }}>
+              <p className="text-[9px] tracking-[0.4em] uppercase" style={{ color: '#be185d', fontFamily: "'Playfair Display', serif" }}>
                 ✦ இருவீட்டார் அழைப்பு ✦
               </p>
             </div>
@@ -347,11 +347,11 @@ const RingDot = () => (
 
 const Person = ({ role, sub, name }: { role: string; sub: string; name: string }) => (
   <div className="text-center group">
-    <p className="text-[10px] uppercase mb-1" style={{ color: '#94a3b8', fontFamily: "'Playfair Display', serif", letterSpacing: '0.3em' }}>
+    <p className="text-[10px] uppercase mb-1" style={{ color: '#be185d', fontFamily: "'Playfair Display', serif", letterSpacing: '0.3em' }}>
       {role}
     </p>
     <p className="text-[11px] mb-2" style={{ fontFamily: "'Noto Serif Tamil', serif", color: '#fbbf24' }}>{sub}</p>
-    <h2 className="font-bold tracking-wide transition-all duration-300 group-hover:scale-105" style={{ fontFamily: "'Noto Serif Tamil', serif", color: '#f8fafc', fontSize: 24, textShadow: '0 2px 10px rgba(255,255,255,0.1)' }}>
+    <h2 className="font-bold tracking-wide transition-all duration-300 group-hover:scale-105" style={{ fontFamily: "'Noto Serif Tamil', serif", color: '#831843', fontSize: 24, textShadow: '0 2px 10px rgba(255,255,255,0.1)' }}>
       {name}
     </h2>
   </div>
@@ -366,28 +366,28 @@ const SectionCard = ({
   center?: boolean
 }) => (
   <div
-    className={`rounded-lg p-4 mb-3 relative overflow-hidden transition-all duration-300 hover:bg-slate-800/40 ${center ? 'text-center' : 'flex gap-4 items-start'}`}
+    className={`rounded-lg p-4 mb-3 relative overflow-hidden transition-all duration-300 hover:bg-pink-50/40 ${center ? 'text-center' : 'flex gap-4 items-start'}`}
     style={{ 
-      background: 'linear-gradient(145deg, rgba(30, 41, 59, 0.4), rgba(15, 23, 42, 0.6))', 
-      border: '1px solid rgba(212, 175, 55, 0.15)',
-      boxShadow: '0 4px 15px rgba(0,0,0,0.2)'
+      background: 'linear-gradient(145deg, rgba(253, 242, 248, 0.7), rgba(252, 231, 243, 0.8))', 
+      border: '1px solid rgba(212, 175, 55, 0.3)',
+      boxShadow: '0 4px 15px rgba(0,0,0,0.1)'
     }}
   >
     {center ? (
       <div className="flex flex-col items-center">
-        <div className="mb-2 bg-slate-800/80 p-2 rounded-full border border-[#d4af37]/30">{icon}</div>
-        <p className="text-[10px] uppercase tracking-widest mb-2" style={{ color: '#94a3b8', fontFamily: "'Playfair Display', serif" }}>
+        <div className="mb-2 bg-pink-50/80 p-2 rounded-full border border-[#d4af37]/30">{icon}</div>
+        <p className="text-[10px] uppercase tracking-widest mb-2" style={{ color: '#be185d', fontFamily: "'Playfair Display', serif" }}>
           {label}
         </p>
         {children}
       </div>
     ) : (
       <>
-        <div className="mt-1 bg-slate-800/80 p-2.5 rounded-full border border-[#d4af37]/30 shrink-0">
+        <div className="mt-1 bg-pink-50/80 p-2.5 rounded-full border border-[#d4af37]/30 shrink-0">
           {icon}
         </div>
         <div>
-          <p className="text-[10px] uppercase tracking-widest mb-1.5" style={{ color: '#94a3b8', fontFamily: "'Playfair Display', serif" }}>
+          <p className="text-[10px] uppercase tracking-widest mb-1.5" style={{ color: '#be185d', fontFamily: "'Playfair Display', serif" }}>
             {label}
           </p>
           {children}
@@ -399,7 +399,7 @@ const SectionCard = ({
 
 const ContactPerson = ({ name, phone }: { name: string; phone: string }) => (
   <div className="flex flex-col items-center">
-    <p style={{ fontFamily: "'Noto Serif Tamil', serif", color: '#f8fafc', fontWeight: 500, fontSize: 13, letterSpacing: '0.02em' }}>{name}</p>
+    <p style={{ fontFamily: "'Noto Serif Tamil', serif", color: '#831843', fontWeight: 500, fontSize: 13, letterSpacing: '0.02em' }}>{name}</p>
     <div className="flex items-center gap-1.5 mt-2 text-[#d4af37]">
       <Phone size={12} />
       <p style={{ fontFamily: "'Noto Serif Tamil', serif", fontSize: 12 }}>{phone}</p>

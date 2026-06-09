@@ -1,7 +1,74 @@
 import { useState, useEffect, useRef } from 'react'
 import { Heart, CalendarDays, Clock, MapPin, Church, Phone } from 'lucide-react'
 
+const texts = {
+  ta: {
+    invitation: '✦ திருமண அழைப்பிதழ் ✦',
+    tapToOpen: 'திறக்க தொடவும்',
+    familiesInvite: '✦ இருவீட்டார் அழைப்பு ✦',
+    weddingInvitation: 'திருமண அழைப்பிதழ்',
+    groomRole: 'மண மகன்',
+    groomSub: 'சிரேஷ்ட புத்திரன்',
+    groomName: 'ஜித்தன்',
+    brideRole: 'மண மகள்',
+    brideSub: 'சிரேஷ்ட புத்திரி',
+    brideName: 'பவுஷ்தீனா',
+    eventDetails: 'நிகழ்வு விவரங்கள்',
+    churchLabel: 'திருமண கோயில்',
+    churchName: 'புனித அந்தோனியார் தேவாலயம்',
+    churchAddress: 'கல்மடு நாவல் நகர்',
+    dateLabel: 'திகதி',
+    dateValue: '24 / 06 / 2026',
+    dateSub: 'புதன்கிழமை',
+    timeLabel: 'நேரம்',
+    timeValue: 'காலை 9:00',
+    timeSub: 'மணி',
+    hallLabel: 'மண்டபம்',
+    hallName: 'Mango Mansion',
+    hallAddress: <>Asaippilai Eaththam, Murusuvil,<br />A9 Road, Jaffna</>,
+    hostLabel: 'வரவேற்பாளர்',
+    host1Name: 'அனிஸ்ராஜ் கிருத்தி',
+    host2Name: 'டெல்மன் டொய்ஸ்',
+    footerMessage: 'உங்கள் இனிய வருகை எங்களுக்கு மகிழ்ச்சியாகும்',
+    greetingPrefix: 'அன்புள்ள',
+  },
+  en: {
+    invitation: '✦ WEDDING INVITATION ✦',
+    tapToOpen: 'TAP TO OPEN',
+    familiesInvite: '✦ FAMILIES INVITE ✦',
+    weddingInvitation: 'Wedding Invitation',
+    groomRole: 'GROOM',
+    groomSub: 'Eldest Son',
+    groomName: 'Jithan',
+    brideRole: 'BRIDE',
+    brideSub: 'Eldest Daughter',
+    brideName: 'Paushtheena',
+    eventDetails: 'EVENT DETAILS',
+    churchLabel: 'CHURCH',
+    churchName: "St. Anthony's Church",
+    churchAddress: 'Kalmadu Naval Nagar',
+    dateLabel: 'DATE',
+    dateValue: '24 / 06 / 2026',
+    dateSub: 'Wednesday',
+    timeLabel: 'TIME',
+    timeValue: '9:00 AM',
+    timeSub: '',
+    hallLabel: 'VENUE',
+    hallName: 'Mango Mansion',
+    hallAddress: <>Asaippilai Eaththam, Murusuvil,<br />A9 Road, Jaffna</>,
+    hostLabel: 'HOSTS',
+    host1Name: 'Anisraj Kiruthi',
+    host2Name: 'Delman Doise',
+    footerMessage: 'Your presence is our joy',
+    greetingPrefix: 'Dear',
+  }
+}
+
 const WeddingInvitation = () => {
+  const [step, setStep] = useState<'name' | 'lang' | 'envelope'>('name')
+  const [userName, setUserName] = useState('')
+  const [lang, setLang] = useState<'ta' | 'en'>('ta')
+  
   const [opening, setOpening] = useState(false)
   const [showCard, setShowCard] = useState(false)
   const particleRef = useRef<HTMLDivElement>(null)
@@ -23,19 +90,90 @@ const WeddingInvitation = () => {
       `
       container.appendChild(p)
     }
-  }, [])
+  }, [step]) // re-run particle generation when step changes since the container unmounts
 
   const handleOpen = () => {
     if (opening) return
     setOpening(true)
-    
-    // Animation sequence:
-    // 0s: Flap starts opening
-    // 0.6s: Letter starts sliding up from inside
-    // 1.2s: Envelope fades out, main card fades in
     setTimeout(() => {
       setShowCard(true)
     }, 1200)
+  }
+
+  const handleNameSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (userName.trim()) setStep('lang')
+  }
+
+  const t = texts[lang]
+  const fontFam = lang === 'ta' ? "'Noto Serif Tamil', serif" : "'Playfair Display', serif"
+
+  if (step === 'name') {
+    return (
+      <div
+        className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden"
+        style={{
+          background: 'radial-gradient(circle at 50% 50%, #fdf2f8 0%, #fce7f3 60%, #fbcfe8 100%)',
+        }}
+      >
+        <div ref={particleRef} className="absolute inset-0 pointer-events-none" />
+        <div className="relative z-10 bg-pink-50/90 p-8 rounded-2xl border border-[#d4af37]/40 text-center shadow-2xl w-full max-w-sm backdrop-blur-sm">
+          <Heart size={36} className="text-[#d4af37] mx-auto mb-6 drop-shadow-sm" fill="currentColor" />
+          <h2 className="text-[#831843] font-serif text-2xl mb-2 font-bold">Welcome</h2>
+          <p className="text-[#9d174d] text-sm mb-6 font-serif">Please enter your name to continue</p>
+          <form onSubmit={handleNameSubmit}>
+            <input 
+              type="text" 
+              placeholder="Your Name..." 
+              value={userName} 
+              onChange={e => setUserName(e.target.value)}
+              className="w-full bg-white border-2 border-pink-200 rounded-xl px-4 py-3 text-[#831843] outline-none focus:border-[#d4af37] transition-colors mb-6 text-center font-serif text-lg shadow-inner"
+              autoFocus
+            />
+            <button 
+              type="submit"
+              disabled={!userName.trim()}
+              className="w-full py-3 bg-gradient-to-r from-[#d4af37] to-[#fef08a] text-[#831843] rounded-xl font-bold hover:opacity-90 transition-opacity disabled:opacity-50 shadow-md"
+            >
+              Next
+            </button>
+          </form>
+        </div>
+      </div>
+    )
+  }
+
+  if (step === 'lang') {
+    return (
+      <div
+        className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden"
+        style={{
+          background: 'radial-gradient(circle at 50% 50%, #fdf2f8 0%, #fce7f3 60%, #fbcfe8 100%)',
+        }}
+      >
+        <div ref={particleRef} className="absolute inset-0 pointer-events-none" />
+        <div className="relative z-10 bg-pink-50/90 p-8 rounded-2xl border border-[#d4af37]/40 text-center shadow-2xl w-full max-w-sm backdrop-blur-sm">
+          <Heart size={36} className="text-[#d4af37] mx-auto mb-6 drop-shadow-sm" fill="currentColor" />
+          <h2 className="text-[#831843] font-serif text-2xl mb-2 font-bold">Choose Language</h2>
+          <p className="text-[#9d174d] text-sm mb-6 font-serif">மொழியைத் தேர்ந்தெடுக்கவும்</p>
+          <div className="flex flex-col gap-4">
+            <button 
+              onClick={() => { setLang('ta'); setStep('envelope'); }}
+              className="w-full px-6 py-4 border-2 border-[#d4af37] text-[#831843] rounded-xl font-medium hover:bg-[#fce7f3] transition-all shadow-sm"
+              style={{ fontFamily: "'Noto Serif Tamil', serif", fontSize: 18 }}
+            >
+              தமிழ்
+            </button>
+            <button 
+              onClick={() => { setLang('en'); setStep('envelope'); }}
+              className="w-full px-6 py-4 border-2 border-[#d4af37] text-[#831843] rounded-xl font-medium hover:bg-[#fce7f3] transition-all font-serif text-lg shadow-sm"
+            >
+              English
+            </button>
+          </div>
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -59,7 +197,7 @@ const WeddingInvitation = () => {
           className={`text-xs mb-8 tracking-widest uppercase transition-opacity duration-300 ${opening ? 'opacity-0' : 'opacity-100'}`}
           style={{ color: '#d4af37', fontFamily: "'Playfair Display', serif", letterSpacing: '0.4em' }}
         >
-          ✦ திருமண அழைப்பிதழ் ✦
+          {t.invitation}
         </p>
 
         <div
@@ -78,7 +216,7 @@ const WeddingInvitation = () => {
 
             {/* The Letter inside sliding up */}
             <div 
-              className={`absolute left-3 right-3 bottom-2 rounded bg-pink-50 border border-[#d4af37]/30 transition-all duration-700 ease-in-out z-10 flex flex-col items-center justify-start p-4 overflow-hidden`}
+              className={`absolute left-3 right-3 bottom-2 rounded bg-pink-50 border border-[#d4af37]/40 transition-all duration-700 ease-in-out z-10 flex flex-col items-center justify-start p-4 overflow-hidden`}
               style={{ 
                 height: '210px',
                 transform: opening ? 'translateY(-140px)' : 'translateY(0)',
@@ -153,7 +291,7 @@ const WeddingInvitation = () => {
               className={`absolute -bottom-8 w-full text-center text-[10px] tracking-widest uppercase transition-opacity duration-300 ${opening ? 'opacity-0' : 'opacity-100'}`}
               style={{ color: '#d4af37', fontFamily: "'Playfair Display', serif", letterSpacing: '0.3em' }}
             >
-              திறக்க தொடவும்
+              {t.tapToOpen}
             </p>
           </div>
         </div>
@@ -190,25 +328,32 @@ const WeddingInvitation = () => {
             <Corner pos="bottom-2 right-2" flip="both" />
 
             {/* Header */}
-            <div className="text-center mb-8 mt-2">
+            <div className="text-center mb-6 mt-2">
               <div className="flex items-center justify-center gap-4 mb-4">
                 <GoldLine style={{ width: 60 }} />
                 <Heart size={20} className="text-[#d4af37]" />
                 <GoldLine style={{ width: 60 }} />
               </div>
               <p className="text-[10px] tracking-widest uppercase mb-3" style={{ color: '#fbbf24', fontFamily: "'Playfair Display', serif", letterSpacing: '0.3em' }}>
-                ✦ இருவீட்டார் அழைப்பு ✦
+                {t.familiesInvite}
               </p>
               <h1
                 className="mt-1 font-bold tracking-wide"
-                style={{ fontFamily: "'Noto Serif Tamil', serif", color: '#831843', fontSize: 26, textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}
+                style={{ fontFamily: fontFam, color: '#831843', fontSize: 26, textShadow: '0 2px 10px rgba(255,255,255,0.5)' }}
               >
-                திருமண அழைப்பிதழ்
+                {t.weddingInvitation}
               </h1>
             </div>
 
+            {/* Greeting */}
+            <div className="text-center mb-8">
+              <p className="text-[15px] italic font-medium" style={{ color: '#9d174d', fontFamily: fontFam }}>
+                {t.greetingPrefix} <span className="font-bold text-[#831843]">{userName}</span>,
+              </p>
+            </div>
+
             {/* Groom */}
-            <Person role="மண மகன்" sub="சிரேஷ்ட புத்திரன்" name="ஜித்தன்" />
+            <Person role={t.groomRole} sub={t.groomSub} name={t.groomName} fontFam={fontFam} />
 
             {/* Rings */}
             <div className="flex items-center justify-center gap-4 my-6">
@@ -224,41 +369,41 @@ const WeddingInvitation = () => {
             </div>
 
             {/* Bride */}
-            <Person role="மண மகள்" sub="சிரேஷ்ட புத்திரி" name="பவுஷ்தீனா" />
+            <Person role={t.brideRole} sub={t.brideSub} name={t.brideName} fontFam={fontFam} />
 
-            <Divider label="நிகழ்வு விவரங்கள்" />
+            <Divider label={t.eventDetails} />
 
             {/* Church */}
-            <SectionCard icon={<Church size={20} className="text-[#d4af37]" />} label="திருமண கோயில்">
-              <p style={{ fontFamily: "'Noto Serif Tamil', serif", color: '#831843', fontWeight: 500, fontSize: 15, letterSpacing: '0.02em' }}>
-                புனித அந்தோனியார் தேவாலயம்
+            <SectionCard icon={<Church size={20} className="text-[#d4af37]" />} label={t.churchLabel}>
+              <p style={{ fontFamily: fontFam, color: '#831843', fontWeight: 500, fontSize: 15, letterSpacing: '0.02em' }}>
+                {t.churchName}
               </p>
-              <p style={{ fontFamily: "'Noto Serif Tamil', serif", color: '#9d174d', fontSize: 13, marginTop: 4 }}>
-                கல்மடு நாவல் நகர்
+              <p style={{ fontFamily: fontFam, color: '#9d174d', fontSize: 13, marginTop: 4 }}>
+                {t.churchAddress}
               </p>
             </SectionCard>
 
             {/* Date & Time */}
             <div className="grid grid-cols-2 gap-3 mb-3">
-              <SectionCard icon={<CalendarDays size={20} className="text-[#d4af37]" />} label="திகதி" center>
-                <p style={{ fontFamily: "'Noto Serif Tamil', serif", color: '#831843', fontWeight: 500, fontSize: 14 }}>24 / 06 / 2026</p>
-                <p style={{ fontFamily: "'Noto Serif Tamil', serif", color: '#9d174d', fontSize: 12, marginTop: 2 }}>புதன்கிழமை</p>
+              <SectionCard icon={<CalendarDays size={20} className="text-[#d4af37]" />} label={t.dateLabel} center>
+                <p style={{ fontFamily: fontFam, color: '#831843', fontWeight: 500, fontSize: 14 }}>{t.dateValue}</p>
+                <p style={{ fontFamily: fontFam, color: '#9d174d', fontSize: 12, marginTop: 2 }}>{t.dateSub}</p>
               </SectionCard>
-              <SectionCard icon={<Clock size={20} className="text-[#d4af37]" />} label="நேரம்" center>
-                <p style={{ fontFamily: "'Noto Serif Tamil', serif", color: '#831843', fontWeight: 500, fontSize: 14 }}>காலை 9:00</p>
-                <p style={{ fontFamily: "'Noto Serif Tamil', serif", color: '#9d174d', fontSize: 12, marginTop: 2 }}>மணி</p>
+              <SectionCard icon={<Clock size={20} className="text-[#d4af37]" />} label={t.timeLabel} center>
+                <p style={{ fontFamily: fontFam, color: '#831843', fontWeight: 500, fontSize: 14 }}>{t.timeValue}</p>
+                {t.timeSub && <p style={{ fontFamily: fontFam, color: '#9d174d', fontSize: 12, marginTop: 2 }}>{t.timeSub}</p>}
               </SectionCard>
             </div>
 
             {/* Hall */}
-            <SectionCard icon={<MapPin size={20} className="text-[#d4af37]" />} label="மண்டபம்">
-              <p style={{ fontFamily: "'Noto Serif Tamil', serif", color: '#831843', fontWeight: 500, fontSize: 15, letterSpacing: '0.02em' }}>Mango Mansion</p>
-              <p style={{ fontFamily: "'Noto Serif Tamil', serif", color: '#9d174d', fontSize: 13, marginTop: 4, lineHeight: 1.5 }}>
-                Asaippilai Eaththam, Murusuvil,<br />A9 Road, Jaffna
+            <SectionCard icon={<MapPin size={20} className="text-[#d4af37]" />} label={t.hallLabel}>
+              <p style={{ fontFamily: fontFam, color: '#831843', fontWeight: 500, fontSize: 15, letterSpacing: '0.02em' }}>{t.hallName}</p>
+              <p style={{ fontFamily: fontFam, color: '#9d174d', fontSize: 13, marginTop: 4, lineHeight: 1.5 }}>
+                {t.hallAddress}
               </p>
             </SectionCard>
 
-            <Divider label="வரவேற்பாளர்" small />
+            <Divider label={t.hostLabel} small />
 
             {/* Hosts */}
             <div
@@ -268,8 +413,8 @@ const WeddingInvitation = () => {
                 border: '1px solid rgba(212, 175, 55, 0.3)' 
               }}
             >
-              <ContactPerson name="அனிஸ்ராஜ் கிருத்தி" phone="076 448 7749" />
-              <ContactPerson name="டெல்மன் டொய்ஸ்" phone="074 259 9636" />
+              <ContactPerson name={t.host1Name} phone="076 448 7749" fontFam={fontFam} />
+              <ContactPerson name={t.host2Name} phone="074 259 9636" fontFam={fontFam} />
             </div>
 
             {/* Footer */}
@@ -277,12 +422,12 @@ const WeddingInvitation = () => {
               <div className="flex justify-center mb-4"><GoldLine style={{ width: 120 }} /></div>
               <p
                 className="text-[13px] italic mb-3"
-                style={{ color: '#fbbf24', fontFamily: "'Noto Serif Tamil', serif" }}
+                style={{ color: '#fbbf24', fontFamily: fontFam }}
               >
-                உங்கள் இனிய வருகை எங்களுக்கு மகிழ்ச்சியாகும்
+                {t.footerMessage}
               </p>
               <p className="text-[9px] tracking-[0.4em] uppercase" style={{ color: '#be185d', fontFamily: "'Playfair Display', serif" }}>
-                ✦ இருவீட்டார் அழைப்பு ✦
+                {t.familiesInvite}
               </p>
             </div>
           </div>
@@ -345,13 +490,13 @@ const RingDot = () => (
   </div>
 )
 
-const Person = ({ role, sub, name }: { role: string; sub: string; name: string }) => (
+const Person = ({ role, sub, name, fontFam }: { role: string; sub: string; name: string, fontFam: string }) => (
   <div className="text-center group">
     <p className="text-[10px] uppercase mb-1" style={{ color: '#be185d', fontFamily: "'Playfair Display', serif", letterSpacing: '0.3em' }}>
       {role}
     </p>
-    <p className="text-[11px] mb-2" style={{ fontFamily: "'Noto Serif Tamil', serif", color: '#fbbf24' }}>{sub}</p>
-    <h2 className="font-bold tracking-wide transition-all duration-300 group-hover:scale-105" style={{ fontFamily: "'Noto Serif Tamil', serif", color: '#831843', fontSize: 24, textShadow: '0 2px 10px rgba(255,255,255,0.1)' }}>
+    <p className="text-[11px] mb-2" style={{ fontFamily: fontFam, color: '#fbbf24' }}>{sub}</p>
+    <h2 className="font-bold tracking-wide transition-all duration-300 group-hover:scale-105" style={{ fontFamily: fontFam, color: '#831843', fontSize: 24, textShadow: '0 2px 10px rgba(255,255,255,0.5)' }}>
       {name}
     </h2>
   </div>
@@ -359,7 +504,7 @@ const Person = ({ role, sub, name }: { role: string; sub: string; name: string }
 
 const SectionCard = ({
   icon, label, children, center,
-}: {
+} : {
   icon: React.ReactNode
   label: string
   children: React.ReactNode
@@ -397,12 +542,12 @@ const SectionCard = ({
   </div>
 )
 
-const ContactPerson = ({ name, phone }: { name: string; phone: string }) => (
+const ContactPerson = ({ name, phone, fontFam }: { name: string; phone: string, fontFam: string }) => (
   <div className="flex flex-col items-center">
-    <p style={{ fontFamily: "'Noto Serif Tamil', serif", color: '#831843', fontWeight: 500, fontSize: 13, letterSpacing: '0.02em' }}>{name}</p>
+    <p style={{ fontFamily: fontFam, color: '#831843', fontWeight: 500, fontSize: 13, letterSpacing: '0.02em' }}>{name}</p>
     <div className="flex items-center gap-1.5 mt-2 text-[#d4af37]">
       <Phone size={12} />
-      <p style={{ fontFamily: "'Noto Serif Tamil', serif", fontSize: 12 }}>{phone}</p>
+      <p style={{ fontFamily: fontFam, fontSize: 12 }}>{phone}</p>
     </div>
   </div>
 )

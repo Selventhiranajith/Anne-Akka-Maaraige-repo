@@ -5,61 +5,61 @@ const texts = {
   ta: {
     invitation: '✦ திருமண அழைப்பிதழ் ✦',
     tapToOpen: 'திறக்க தொடவும்',
-    familiesInvite: '✦ இருவீட்டார் அழைப்பு ✦',
+    familiesInvite: '✦ இரு வீட்டார் அழைப்பு ✦',
     weddingInvitation: 'திருமண அழைப்பிதழ்',
     groomRole: 'மண மகன்',
-    groomSub: 'சிரேஷ்ட புத்திரன்',
+    groomSub: 'திரு. திருமதி சந்திரகுமார் கிருபாமணி தம்பதிகளின் சிரேஷ்ட புத்திரன்',
     groomName: 'ஜித்தன்',
     brideRole: 'மண மகள்',
-    brideSub: 'சிரேஷ்ட புத்திரி',
-    brideName: 'பவுஷ்தீனா',
+    brideSub: 'திரு. திருமதி அமலதாஸ் மெரிஸ்டெல்லா தம்பதிகளின் சிரேஷ்ட புத்திரி',
+    brideName: 'மரியா பவுஸ்தீனா',
     eventDetails: 'நிகழ்வு விவரங்கள்',
-    churchLabel: 'திருமண கோயில்',
-    churchName: 'புனித அந்தோனியார் தேவாலயம்',
-    churchAddress: 'கல்மடு நாவல் நகர்',
+    churchLabel: 'திருமண ஆலயம்',
+    churchName: 'புனித அந்தோனியார் ஆலயம்',
+    churchAddress: 'நாவலர் நகர், கல்மடு',
     dateLabel: 'திகதி',
     dateValue: '24 / 06 / 2026',
     dateSub: 'புதன்கிழமை',
     timeLabel: 'நேரம்',
-    timeValue: 'காலை 9:00',
+    timeValue: 'முற்பகல் 09:00',
     timeSub: 'மணி',
     hallLabel: 'மண்டபம்',
     hallName: 'Mango Mansion',
-    hallAddress: <>Asaippilai Eaththam, Murusuvil,<br />A9 Road, Jaffna</>,
+    hallAddress: <>ஆசைப்பிள்ளை ஏத்தம், மிருசுவில்,<br />A9 Road, யாழ்ப்பாணம்</>,
     hostLabel: 'வரவேற்பாளர்',
     host1Name: 'அனிஸ்ராஜ் கிருத்தி',
-    host2Name: 'டெல்மன் டொய்ஸ்',
-    footerMessage: 'உங்கள் இனிய வருகை எங்களுக்கு மகிழ்ச்சியாகும்',
-    greetingPrefix: 'அன்புள்ள',
+    host2Name: 'டெல்மன்டொய்ஸ் ரொசானி ரெக்சி',
+    footerMessage: 'இவ்வணம் தங்கள் நல்வரவை இனிதே விரும்பும்',
+    greetingPrefix: 'அன்புடையீர்',
   },
   en: {
     invitation: '✦ WEDDING INVITATION ✦',
     tapToOpen: 'TAP TO OPEN',
-    familiesInvite: '✦ FAMILIES INVITE ✦',
+    familiesInvite: '✦ BOTH PARTIES INVITATION ✦',
     weddingInvitation: 'Wedding Invitation',
     groomRole: 'GROOM',
-    groomSub: 'Eldest Son',
-    groomName: 'Jithan',
+    groomSub: 'Eldest Son of Mr. & Mrs. Santhirakumar Kirubamani',
+    groomName: 'Jeeththan',
     brideRole: 'BRIDE',
-    brideSub: 'Eldest Daughter',
-    brideName: 'Paushtheena',
+    brideSub: 'Eldest Daughter of Mr. & Mrs. Amalathas Meristella',
+    brideName: 'Maria Fausthina',
     eventDetails: 'EVENT DETAILS',
     churchLabel: 'CHURCH',
     churchName: "St. Anthony's Church",
-    churchAddress: 'Kalmadu Naval Nagar',
+    churchAddress: 'Navalar Nagar, Kalmadu',
     dateLabel: 'DATE',
     dateValue: '24 / 06 / 2026',
     dateSub: 'Wednesday',
     timeLabel: 'TIME',
-    timeValue: '9:00 AM',
+    timeValue: '09:00 AM',
     timeSub: '',
     hallLabel: 'VENUE',
     hallName: 'Mango Mansion',
-    hallAddress: <>Asaippilai Eaththam, Murusuvil,<br />A9 Road, Jaffna</>,
+    hallAddress: <>Asaipillai Eaththam, Mirusuvil,<br />A9 Road, Jaffna</>,
     hostLabel: 'HOSTS',
     host1Name: 'Anisraj Kiruthi',
-    host2Name: 'Delman Doise',
-    footerMessage: 'Your presence is our joy',
+    host2Name: 'Delmandoise Rosani Rexi',
+    footerMessage: 'bless the couple and thereafter join us for lunch',
     greetingPrefix: 'Dear',
   }
 }
@@ -338,18 +338,14 @@ const WeddingInvitation = () => {
                 {t.familiesInvite}
               </p>
               <h1
-                className="mt-1 font-bold tracking-wide"
+                className="mt-1 font-bold tracking-wide flex flex-col gap-1 items-center"
                 style={{ fontFamily: fontFam, color: '#831843', fontSize: 26, textShadow: '0 2px 10px rgba(255,255,255,0.5)' }}
               >
-                {t.weddingInvitation}
+                <span>{t.weddingInvitation}</span>
+                <span className="text-xl text-[#9d174d] italic font-medium mt-2" style={{ fontFamily: fontFam }}>
+                  {t.greetingPrefix} {userName}
+                </span>
               </h1>
-            </div>
-
-            {/* Greeting */}
-            <div className="text-center mb-8">
-              <p className="text-[15px] italic font-medium" style={{ color: '#9d174d', fontFamily: fontFam }}>
-                {t.greetingPrefix} <span className="font-bold text-[#831843]">{userName}</span>,
-              </p>
             </div>
 
             {/* Groom */}

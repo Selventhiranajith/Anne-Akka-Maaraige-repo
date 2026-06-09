@@ -76,7 +76,10 @@ const WeddingInvitation = () => {
   useEffect(() => {
     if (!particleRef.current) return
     const container = particleRef.current
-    for (let i = 0; i < 30; i++) {
+    container.innerHTML = '' // clear existing particles on re-run
+
+    // Add glowing dust particles
+    for (let i = 0; i < 20; i++) {
       const p = document.createElement('div')
       p.className = 'particle'
       const size = Math.random() * 3 + 1
@@ -89,6 +92,22 @@ const WeddingInvitation = () => {
         --duration:${Math.random() * 4 + 2}s;
       `
       container.appendChild(p)
+    }
+
+    // Add floating hearts
+    for (let i = 0; i < 15; i++) {
+      const h = document.createElement('div')
+      h.className = 'floating-heart'
+      h.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>'
+      const size = Math.random() * 0.5 + 0.3
+      h.style.cssText = `
+        left: ${Math.random() * 100}%;
+        --delay: ${Math.random() * 5}s;
+        --duration: ${Math.random() * 6 + 6}s;
+        transform: scale(${size});
+        color: rgba(212, 175, 55, ${Math.random() * 0.4 + 0.2});
+      `
+      container.appendChild(h)
     }
   }, [step]) // re-run particle generation when step changes since the container unmounts
 
@@ -118,7 +137,7 @@ const WeddingInvitation = () => {
       >
         <div ref={particleRef} className="absolute inset-0 pointer-events-none" />
         <div className="relative z-10 bg-pink-50/90 p-8 rounded-2xl border border-[#d4af37]/40 text-center shadow-2xl w-full max-w-sm backdrop-blur-sm">
-          <Heart size={36} className="text-[#d4af37] mx-auto mb-6 drop-shadow-sm" fill="currentColor" />
+          <Heart size={36} className="text-[#d4af37] mx-auto mb-6 drop-shadow-sm heartbeat" fill="currentColor" />
           <h2 className="text-[#831843] font-serif text-2xl mb-2 font-bold">Welcome</h2>
           <p className="text-[#9d174d] text-sm mb-6 font-serif">Please enter your name to continue</p>
           <form onSubmit={handleNameSubmit}>
@@ -153,7 +172,7 @@ const WeddingInvitation = () => {
       >
         <div ref={particleRef} className="absolute inset-0 pointer-events-none" />
         <div className="relative z-10 bg-pink-50/90 p-8 rounded-2xl border border-[#d4af37]/40 text-center shadow-2xl w-full max-w-sm backdrop-blur-sm">
-          <Heart size={36} className="text-[#d4af37] mx-auto mb-6 drop-shadow-sm" fill="currentColor" />
+          <Heart size={36} className="text-[#d4af37] mx-auto mb-6 drop-shadow-sm heartbeat" fill="currentColor" />
           <h2 className="text-[#831843] font-serif text-2xl mb-2 font-bold">Choose Language</h2>
           <p className="text-[#9d174d] text-sm mb-6 font-serif">மொழியைத் தேர்ந்தெடுக்கவும்</p>
           <div className="flex flex-col gap-4">
@@ -224,7 +243,7 @@ const WeddingInvitation = () => {
               }}
             >
               <div className="w-16 h-1 bg-[#d4af37]/40 rounded mb-4 mt-2" />
-              <Heart size={24} className="text-[#d4af37]/60 mb-4" />
+              <Heart size={24} className="text-[#d4af37]/60 mb-4 heartbeat" />
               <div className="w-3/4 h-2 bg-[#d4af37]/20 rounded mb-3" />
               <div className="w-1/2 h-2 bg-[#d4af37]/20 rounded mb-3" />
               <div className="w-2/3 h-2 bg-[#d4af37]/20 rounded" />
@@ -269,7 +288,7 @@ const WeddingInvitation = () => {
                   boxShadow: '0 8px 24px rgba(0,0,0,0.6), inset 0 2px 4px rgba(255,255,255,0.4)',
                 }}
               >
-                <Heart size={28} className="text-amber-100 drop-shadow-md" fill="currentColor" />
+                <Heart size={28} className="text-amber-100 drop-shadow-md heartbeat" fill="currentColor" />
               </div>
               <svg className="absolute inset-0 w-full h-full pointer-events-none" preserveAspectRatio="none">
                 <path d="M 0,0 L 170,140 L 340,0" fill="none" stroke="rgba(212,175,55,0.4)" strokeWidth="2" />
@@ -331,7 +350,7 @@ const WeddingInvitation = () => {
             <div className="text-center mb-6 mt-2">
               <div className="flex items-center justify-center gap-4 mb-4">
                 <GoldLine style={{ width: 60 }} />
-                <Heart size={20} className="text-[#d4af37]" />
+                <Heart size={20} className="text-[#d4af37] heartbeat" />
                 <GoldLine style={{ width: 60 }} />
               </div>
               <p className="text-[10px] tracking-widest uppercase mb-3" style={{ color: '#fbbf24', fontFamily: "'Playfair Display', serif", letterSpacing: '0.3em' }}>
@@ -357,7 +376,7 @@ const WeddingInvitation = () => {
               <div className="flex items-center gap-3">
                 <RingDot />
                 <div className="w-10 h-10 rounded-full border border-[#d4af37] flex items-center justify-center bg-amber-500/10 shadow-[0_0_15px_rgba(212,175,55,0.2)]">
-                  <Heart size={18} className="text-[#d4af37]" fill="currentColor" />
+                  <Heart size={18} className="text-[#d4af37] heartbeat" fill="currentColor" />
                 </div>
                 <RingDot />
               </div>

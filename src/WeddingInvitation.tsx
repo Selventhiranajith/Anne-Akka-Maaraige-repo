@@ -116,7 +116,7 @@ const WeddingInvitation = () => {
     setOpening(true)
     setTimeout(() => {
       setShowCard(true)
-    }, 1200)
+    }, 800) // Quicker show card transition
   }
 
   const handleNameSubmit = (e: React.FormEvent) => {
@@ -205,12 +205,15 @@ const WeddingInvitation = () => {
       {/* Ambient particles */}
       <div ref={particleRef} className="absolute inset-0 pointer-events-none" />
 
+      {/* Marriage animations after opening */}
+      <MarriageAnimations active={showCard} />
+
       {/* ── REALISTIC ENVELOPE ── */}
       <div 
         className={`absolute z-20 flex flex-col items-center transition-all duration-700 ${
-          opening ? 'opacity-0 scale-110 pointer-events-none' : 'opacity-100 scale-100'
+          opening ? 'opacity-0 scale-125 translate-y-12 pointer-events-none' : 'opacity-100 scale-100'
         }`}
-        style={{ transitionDelay: opening ? '1.2s' : '0s' }}
+        style={{ transitionDelay: opening ? '0.6s' : '0s' }}
       >
         <p
           className={`text-xs mb-8 tracking-widest uppercase transition-opacity duration-300 ${opening ? 'opacity-0' : 'opacity-100'}`}
@@ -266,7 +269,7 @@ const WeddingInvitation = () => {
 
             {/* Envelope Top Flap (Opens up) */}
             <div 
-              className={`absolute top-0 left-0 w-full h-[140px] origin-top transition-transform duration-700 ease-in-out z-30`}
+              className={`absolute top-0 left-0 w-full h-[140px] origin-top transition-transform duration-500 ease-in-out z-30`}
               style={{ 
                 background: 'linear-gradient(to bottom, #fdf2f8, #fce7f3)',
                 clipPath: 'polygon(0 0, 100% 0, 50% 100%)',
@@ -297,7 +300,7 @@ const WeddingInvitation = () => {
 
             {/* Top Flap Backface (Visible when open) */}
             <div 
-              className={`absolute top-0 left-0 w-full h-[140px] origin-top transition-transform duration-700 ease-in-out z-0`}
+              className={`absolute top-0 left-0 w-full h-[140px] origin-top transition-transform duration-500 ease-in-out z-0`}
               style={{ 
                 background: '#fdf2f8',
                 clipPath: 'polygon(0 0, 100% 0, 50% 100%)',
@@ -318,8 +321,8 @@ const WeddingInvitation = () => {
 
       {/* ── FULL CARD ── */}
       <div
-        className={`relative z-10 w-full max-w-md transition-all duration-1000 ease-out ${
-          showCard ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-32 scale-50 pointer-events-none'
+        className={`relative z-10 w-full max-w-md ${
+          showCard ? 'card-flash-appear' : 'opacity-0 pointer-events-none'
         }`}
       >
         {/* Card outer */}
@@ -467,6 +470,48 @@ const WeddingInvitation = () => {
 }
 
 /* ── Sub-components ── */
+
+const MarriageAnimations = ({ active }: { active: boolean }) => {
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!active || !containerRef.current) return
+    const container = containerRef.current
+    container.innerHTML = '' // Clear on re-trigger
+
+    // Create 30 rose petals
+    for (let i = 0; i < 30; i++) {
+      const petal = document.createElement('div')
+      petal.className = 'rose-petal'
+      const size = Math.random() * 8 + 8 // 8-16px
+      petal.style.cssText = `
+        left: ${Math.random() * 100}vw;
+        --delay: ${Math.random() * 4}s;
+        --duration: ${Math.random() * 6 + 4}s;
+        --rotation: ${Math.random() * 360}deg;
+        width: ${size}px;
+        height: ${size * 1.5}px;
+      `
+      container.appendChild(petal)
+    }
+
+    // Create 40 gold sparkles
+    for (let i = 0; i < 40; i++) {
+      const sparkle = document.createElement('div')
+      sparkle.className = 'gold-sparkle'
+      sparkle.style.cssText = `
+        left: ${Math.random() * 100}vw;
+        --delay: ${Math.random() * 5}s;
+        --duration: ${Math.random() * 4 + 3}s;
+        --rotation: ${Math.random() * 360}deg;
+      `
+      container.appendChild(sparkle)
+    }
+  }, [active])
+
+  if (!active) return null
+  return <div ref={containerRef} className="fixed inset-0 pointer-events-none z-10 overflow-hidden" />
+}
 
 const GoldBand = ({ className = "" }: { className?: string }) => (
   <div className={className} style={{ height: 4, minHeight: 4, background: 'linear-gradient(to right, transparent, #d4af37, #fef08a, #d4af37, transparent)' }} />

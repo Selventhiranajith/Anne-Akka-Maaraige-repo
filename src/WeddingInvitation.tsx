@@ -367,6 +367,17 @@ const WeddingInvitation = () => {
               </h1>
             </div>
 
+            {/* Couple Image */}
+            <div className="flex justify-center mb-6 relative">
+              <div className="w-40 h-52 md:w-48 md:h-60 rounded-t-full rounded-b-xl p-1 bg-gradient-to-tr from-[#d4af37] via-[#fef08a] to-[#d4af37] shadow-[0_0_20px_rgba(212,175,55,0.3)]">
+                <img 
+                  src="/couple.jpg" 
+                  alt="Couple" 
+                  className="w-full h-full object-cover rounded-t-full rounded-b-xl border-[3px] border-white"
+                />
+              </div>
+            </div>
+
             {/* Groom */}
             <Person role={t.groomRole} sub={t.groomSub} name={t.groomName} fontFam={fontFam} />
 

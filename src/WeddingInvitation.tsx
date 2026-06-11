@@ -28,7 +28,7 @@ const texts = {
     hallAddress: <>ஆசைப்பிள்ளை ஏத்தம், மிருசுவில்,<br />A9 Road, யாழ்ப்பாணம்</>,
     hostLabel: 'வரவேற்பாளர்',
     host1Name: 'அனிஸ்ராஜ் கிருத்தி',
-    host2Name: 'டெல்மன்டொய்ஸ் ரொசானி ரெக்சி',
+    host2Name: ' டெஸ்மன் டொயிஸ் றொஷானி றெக்சி',
     footerMessage: 'இவ்வணம் தங்கள் நல்வரவை இனிதே விரும்பும்',
     greetingPrefix: 'அன்புடையீர்',
   },
@@ -58,7 +58,7 @@ const texts = {
     hallAddress: <>Asaipillai Eaththam, Mirusuvil,<br />A9 Road, Jaffna</>,
     hostLabel: 'HOSTS',
     host1Name: 'Anisraj Kiruthi',
-    host2Name: 'Delmandoise Rosani Rexi',
+    host2Name: 'Desman dois Rosani rexi',
     footerMessage: 'bless the couple and thereafter join us for lunch',
     greetingPrefix: 'Dear',
   }
